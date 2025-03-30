@@ -1,0 +1,79 @@
+## .NET Core
+bin/
+obj/
+*.user
+*.userosscache
+*.sln.docstates
+
+## Visual Studio / Visual Studio Code
+.vs/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln.iml
+.idea/
+*.swp
+*.swo
+
+## Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+build/
+bld/
+[Bb]in/
+[Oo]bj/
+[Oo]ut/
+msbuild.log
+msbuild.err
+msbuild.wrn
+
+## User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+## .NET Core
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+## Visual Studio for Mac
+.vscode/
+.idea/
+*.sln.iml
+
+## Rider
+.idea/
+*.sln.iml
+
+## SQLite database files
+*.db
+*.db-shm
+*.db-wal
+
+## Environment files
+.env
+*.Development.json
+!appsettings.Development.json
+
+## Logs
+*.log
+logs/
+
+## macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+## Temporary files
+*.swp
+*.*~
+*.tmp
+*.bak
