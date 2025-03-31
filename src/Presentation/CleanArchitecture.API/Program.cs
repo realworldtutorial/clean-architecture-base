@@ -20,7 +20,11 @@ builder.Services.AddEndpointsApiExplorer();
 
 // Add DbContext
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+}
+    );
+
 
 // Add Identity
 builder.Services.AddIdentity<ApplicationUser, ApplicationRole>()
@@ -102,8 +106,8 @@ builder.Services.AddScoped<IPermissionService, PermissionService>();
 
 builder.Services.AddSwaggerGen(c =>
 {
-     c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
-     
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
+
     // Cấu hình hiển thị ô nhập Token
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
@@ -114,7 +118,7 @@ builder.Services.AddSwaggerGen(c =>
         In = ParameterLocation.Header,
         Description = "Nhập token theo định dạng: Bearer {token}"
     });
-    
+
     c.AddSecurityRequirement(new OpenApiSecurityRequirement
     {
         {
@@ -133,11 +137,19 @@ builder.Services.AddSwaggerGen(c =>
 
 var app = builder.Build();
 
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetService<DbContext>();
+    dbContext?.Database.EnsureCreated();
+    dbContext?.Database.Migrate();
+}
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+
 
 }
 
